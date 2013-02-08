@@ -24,7 +24,7 @@ package "unzip" do
 end
 
 remote_file "/tmp/elasticsearch-#{node[:elasticsearch][:version]}.zip" do
-  source "http://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-#{node[:elasticsearch][:version]}.zip"
+  source "http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-#{node[:elasticsearch][:version]}.zip"
   mode "0644"
   checksum node[:elasticsearch][:checksum]
 end
