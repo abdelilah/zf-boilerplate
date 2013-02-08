@@ -5,6 +5,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     public function _initConfig()
     {
         Zend_Registry::set('config', $this->getOptions());
+
+        // Store config file as object is more handy
+        $conf = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
+        Zend_Registry::set('configObj', $conf);
     }
     
     public function _initAutoloaderNamespaces()

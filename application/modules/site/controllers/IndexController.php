@@ -114,6 +114,9 @@ class Site_IndexController extends Zend_Controller_Action
         
     public function indexAction()
     {
+        $this->view->headTitle(Zend_Registry::get('configObj')->app->name);
+
+
         $addQuoteForm = new \App\Form\AddQuote();
         $this->view->form = $addQuoteForm;
         $this->checkSearchindex();

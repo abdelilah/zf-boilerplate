@@ -1,13 +1,13 @@
 <?php if ($this->databaseError): ?>
-    <div class="alert-message warning">
-        <a class="close" href="#">×</a>
+    <div class="alert alert-warning">
+        <a class="close" href="#"  data-dismiss="alert">×</a>
         <p><strong>Sample Database:</strong> If you want see some persistence action, you will first need to <a href="http://zf-boilerplate.com/documentation/managing-the-virtual-machine/#ssh" target="blank">SSH into your VM</a> and run the <a href="http://zf-boilerplate.com/documentation/persistence-the-database/#fixtures" target="blank">database and fixtures setup script</a>.</p>
     </div>
 <?php endif; ?>
 
 <?php if ($this->searchindexError): ?>
-    <div class="alert-message warning">
-        <a class="close" href="#">×</a>
+    <div class="alert alert-warning">
+        <a class="close" href="#" data-dismiss="alert">×</a>
         <p><strong>Fulltext Search:</strong> If you want query the fulltext search index, you will first need to <a href="http://zf-boilerplate.com/documentation/managing-the-virtual-machine/#ssh" target="blank">SSH into your VM</a> and run the searchindex and fixtures setup script.</p>
     </div>
 <?php endif; ?>
