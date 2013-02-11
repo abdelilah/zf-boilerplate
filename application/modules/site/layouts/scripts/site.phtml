@@ -8,10 +8,6 @@
     <head>
         <meta charset="utf-8">
 
-        <!-- Use the .htaccess and remove these lines to avoid edge case issues.
-             More info: h5bp.com/b/378 -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
         <?= $this->headTitle(); ?>
         <meta name="description" content="">
         <meta name="author" content="">
@@ -23,9 +19,8 @@
 
         <!-- CSS: implied media=all -->
         <!-- CSS concatenated and minified via ant build script-->
+        <?= $this->headLink() ?>
         <link rel="stylesheet" href="<?php echo $this->baseUrl('/css/style.css')?>">
-        <link rel="stylesheet" href="<?php echo $this->baseUrl('/css/bootstrap.min.css')?>">
-        <link rel="stylesheet" href="<?php echo $this->baseUrl('/css/bootstrap-responsive.min.css')?>">
         <!-- end CSS-->
 
         <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -34,9 +29,6 @@
              Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
              For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
         <script src="<?php echo $this->baseUrl('js/libs/modernizr-2.0.6.min.js')?>"></script>
-
-        <script type="text/javascript" src="<?php echo $this->baseUrl('js/libs/jquery-1.9.1.min.js')?>"></script>
-        <script type="text/javascript" src="<?php echo $this->baseUrl('js/bootstrap.min.js')?>"></script>
     </head>
 
     <body>
@@ -51,21 +43,15 @@
         </footer>
 
         <!-- JavaScript at the bottom for fast page loading -->
-
-        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
-
-
         <!-- scripts concatenated and minified via ant build script-->
+        <?= $this->headScript(); ?>
+
         <script defer src="<?php echo $this->baseUrl('js/plugins.js')?>"></script>
         <script defer src="<?php echo $this->baseUrl('js/script.js')?>"></script>
         <!-- end scripts-->
 
-
-        <!-- Change UA-XXXXX-X to be your site's ID -->
         <script>
-            window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+            window._gaq = [['_setAccount','<?= Zend_Registry::get('configObj')->app->ga_analytics ?>'],['_trackPageview'],['_trackPageLoadTime']];
             Modernizr.load({
                 load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
             });

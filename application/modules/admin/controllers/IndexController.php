@@ -1,6 +1,6 @@
 <?php
 
-class Admin_IndexController extends Zend_Controller_Action
+class Admin_IndexController extends App_Controller
 {
 
     public function init()

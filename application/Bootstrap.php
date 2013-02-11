@@ -91,4 +91,46 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('es', $es);
     }
 
+    protected function _initView()
+    {
+        // Initialize view
+        $view = new Zend_View();
+        $view->setLfiProtection(false);
+        $view->addBasePath(APPLICATION_PATH . '/views');
+
+        // Set base head title
+        $view->headTitle(Zend_Registry::get('configObj')->app->name);
+        $view->headTitle()->setSeparator(' - ');
+        
+        // Add base scripts and stylesheets
+        $baseJs = Zend_Registry::get('configObj')->app->baseJs->toArray();
+        $baseCss = Zend_Registry::get('configObj')->app->baseCss->toArray();
+
+        foreach($baseJs as $file)
+        {
+            $url = Zend_Registry::get('configObj')->app->cdnUrl == '' ? $view->baseUrl($file) : Zend_Registry::get('configObj')->app->cdnUrl . $file;
+            $view->headScript()->appendFile($url);
+        }
+
+        foreach($baseCss as $file)
+        {
+            $url = Zend_Registry::get('configObj')->app->cdnUrl == '' ? $view->baseUrl($file) : Zend_Registry::get('configObj')->app->cdnUrl . $file;
+            $view->headLink()->appendStylesheet($url);
+        }
+
+        // Add it to the ViewRenderer
+        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+        $viewRenderer->setView($view);
+        
+        // Paginator
+        Zend_Paginator::setDefaultScrollingStyle('Sliding');
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial('paginator.phtml');
+
+        return $view;
+    }
+
+    public function _initJson()
+    {
+        Zend_Json::$useBuiltinEncoderDecoder = true;
+    }
 }

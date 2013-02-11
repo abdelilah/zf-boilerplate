@@ -1,29 +1,7 @@
 <?php
 
-class Site_IndexController extends Zend_Controller_Action
+class Site_IndexController extends App_Controller
 {
-
-    /**
-     * @var Doctrine\ORM\EntityManager
-     */
-    protected $_em = null;
-
-    /**
-     * @var \sfServiceContainer
-     */
-    protected $_sc = null;
-
-    /**
-     * @var \App\Service\RandomQuote
-     * @InjectService RandomQuote
-     */
-    protected $_randomQuote = null;
-
-    public function init()
-    {
-        $this->_em = Zend_Registry::get('em');
-    }
-
     public function searchAction()
     {
         if ($query = $this->getRequest()->getParam('query')) {
@@ -114,9 +92,6 @@ class Site_IndexController extends Zend_Controller_Action
         
     public function indexAction()
     {
-        $this->view->headTitle(Zend_Registry::get('configObj')->app->name);
-
-
         $addQuoteForm = new \App\Form\AddQuote();
         $this->view->form = $addQuoteForm;
         $this->checkSearchindex();
